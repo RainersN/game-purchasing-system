@@ -1,0 +1,17 @@
+# Infrastructure only. The services themselves run from IntelliJ for now.
+# Kafka and game-db will be added when gameService and paymentService are built.
+services:
+  users-db:
+    image: postgres:16
+    container_name: users-db
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_USER: users
+      POSTGRES_PASSWORD: users
+    ports:
+      - "5433:5432"   # 5433 on your machine, so it doesn't clash with a local PostgreSQL on 5432
+    volumes:
+      - users-db-data:/var/lib/postgresql/data
+
+volumes:
+  users-db-data:

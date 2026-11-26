@@ -1,0 +1,20 @@
+server:
+  port: 8081
+  error:
+    include-message: always   # lets the client show messages like "Username is already taken"
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: ${USERS_DB_URL:jdbc:postgresql://localhost:5433/users}
+    username: ${USERS_DB_USER:users}
+    password: ${USERS_DB_PASSWORD:users}
+  jpa:
+    hibernate:
+      ddl-auto: update        # Hibernate creates the users table; switch to Flyway migrations later if wanted
+    open-in-view: false
+
+app:
+  cors:
+    allowed-origin: ${CLIENT_ORIGIN:http://localhost:3000}
